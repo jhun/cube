@@ -8,7 +8,8 @@ vz-cube {
     transition: 500ms perspective ease-in-out;
 }
 vz-cube[zoom] {
-    perspective: 60vmax;
+    transition: 500ms perspective ease-in-out !important;
+    perspective: 60vmax !important;
 }
 vz-cubepivot {
     position: relative;

@@ -58,6 +58,7 @@ export default class DeviceOrientationManager {
                 }
                 break;
             case 180:
+            break;
                 // portrait (upside-down)
         }
 

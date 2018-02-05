@@ -110,13 +110,25 @@ class VZCubeElement extends HTMLElement {
             this.deviceOrientationManager.deinit()
     }
 
-    animateTo(yaw, pitch, duration = 1000, callback = null) {
+    animateTo(yaw, pitch, duration = 1000, direction = 'auto', callback = null) {
         // set yaw to the neares yaw
-        const altYaw = yaw > 0
-            ? yaw - 360
-            : yaw + 360
-        if (Math.abs(altYaw - this.yaw) < Math.abs(yaw - this.yaw)) {
-            yaw = altYaw
+        if (direction =='auto'){
+            const altYaw = yaw > 0
+                ? yaw - 360
+                : yaw + 360
+            if (Math.abs(altYaw - this.yaw) < Math.abs(yaw - this.yaw)) {
+                yaw = altYaw;
+            }
+        }
+        else if (direction =='right'){
+            if (this.yaw>0){
+                this.yaw =-180-(180-this.yaw);
+            }
+        }
+        else if (direction =='left'){
+             if (this.yaw<0){
+                this.yaw =180+(180-this.yaw);
+            }
         }
 
         this._isAnimating = true
@@ -140,6 +152,36 @@ class VZCubeElement extends HTMLElement {
     }
     zoomOut() {
         this.removeAttribute('zoom')
+    }
+
+    zoomTo(zoomValue, duration = 1500){
+        this.style.transition = duration + 'ms perspective ease-in-out',
+        this.style.perspective = zoomValue + 'vmax'
+    }
+
+    fadeOut(duration = 1000){
+      var obj = this;
+      obj.style.opacity = 1;
+      (function fade() {
+        if ((obj.style.opacity -= 1000/duration/30) < 0) {
+          obj.style.display = "none";
+        } else {
+          requestAnimationFrame(fade);
+        }
+      })();
+    }
+
+    fadeIn(duration = 1000, display = "block"){
+      var obj = this;
+      obj.style.display = display;
+      obj.style.opacity = 0;
+      (function fade() {
+        var val = parseFloat(obj.style.opacity);
+        if (!((val +=  1000/duration/30) > 1)) {
+          obj.style.opacity = val;
+          requestAnimationFrame(fade);
+        }
+      })();
     }
 
     _easing(t) {
