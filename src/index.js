@@ -315,6 +315,12 @@ class VZCubeFeature extends HTMLElement {
     }
 
     connectedCallback() {
+        this._pivot = this.querySelector('vz-cubepivot')
+        this._addEventHandlers()
+        this._refresh()
+        
+        if (this.deviceOrientationManager !== undefined)
+            this.deviceOrientationManager.init()
     }
 
     attributeChangedCallback(attrName, oldVal, newVal) {
