@@ -36,32 +36,35 @@ export default class DeviceOrientationManager {
     }
 
     _getOrientation ({ alpha, beta, gamma }) {
-        const orientation = window.orientation || 0
+        var frozen = window.frozen || false;
+        if (!frozen){
+            const orientation = window.orientation || 0
 
-        var r = {
-            x: -(alpha + gamma),
-            y: beta,
-        }
+            var r = {
+                x: -(alpha + gamma),
+                y: beta,
+            }
 
-        switch (orientation) {
-            case 90:
-                // landscape (left)
-                r = {
-                    x: 90 - (alpha + beta),
-                    y: -gamma,
-                }
+            switch (orientation) {
+                case 90:
+                    // landscape (left)
+                    r = {
+                        x: 90 - (alpha + beta),
+                        y: -gamma,
+                    }
+                    break;
+                case -90:
+                    r = {
+                        x: 90 - (alpha + beta),
+                        y: gamma,
+                    }
+                    break;
+                case 180:
                 break;
-            case -90:
-                r = {
-                    x: 90 - (alpha + beta),
-                    y: gamma,
-                }
-                break;
-            case 180:
-            break;
-                // portrait (upside-down)
-        }
+                    // portrait (upside-down)
+            }
 
-        return r;
+            return r;
+        }
     }
 }
