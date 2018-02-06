@@ -120,14 +120,19 @@ class VZCubeElement extends HTMLElement {
                 yaw = altYaw;
             }
         }
-        else if (direction =='right'){
-            if (this.yaw>0){
+         else if (direction =='right'){
+            if (this.yaw >= 0){
                 this.yaw =-180-(180-this.yaw);
+            }else if (this.yaw < 0){
+                this.yaw = this.yaw;
             }
         }
         else if (direction =='left'){
-             if (this.yaw<0){
-                this.yaw =180+(180-this.yaw);
+            console.log(this.yaw);
+             if (this.yaw <=0){
+                this.yaw = 180+(180+this.yaw);
+            }else if (this.yaw>0){
+                this.yaw = this.yaw;
             }
         }
 
@@ -315,12 +320,6 @@ class VZCubeFeature extends HTMLElement {
     }
 
     connectedCallback() {
-        this._pivot = this.querySelector('vz-cubepivot')
-        this._addEventHandlers()
-        this._refresh()
-        
-        if (this.deviceOrientationManager !== undefined)
-            this.deviceOrientationManager.init()
     }
 
     attributeChangedCallback(attrName, oldVal, newVal) {
