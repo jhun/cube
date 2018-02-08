@@ -128,7 +128,6 @@ class VZCubeElement extends HTMLElement {
             }
         }
         else if (direction =='left'){
-            console.log(this.yaw);
              if (this.yaw <=0){
                 this.yaw = 180+(180+this.yaw);
             }else if (this.yaw>0){
@@ -295,7 +294,7 @@ class VZCubeElement extends HTMLElement {
 
         const perspective = getComputedStyle(this).perspective
 
-        this._pivot.style.transform = `translateZ(${perspective}) rotateZ(${this.roll}deg) rotateX(${this.pitch}deg) rotateY(${this.yaw}deg)`
+         this._pivot.style.transform = `translateZ(${perspective}) rotateZ(${this.roll}deg) rotateX(${this.pitch}deg) rotateY(${this.yaw}deg)`
 
         // recurse
         this._refreshId = typeof requestAnimationFrame === 'function'
