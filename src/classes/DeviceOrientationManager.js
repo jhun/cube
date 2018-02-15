@@ -1,10 +1,10 @@
 export default class DeviceOrientationManager {
-    constructor (cube) {
+    constructor (cube, initOrientationCompensate=false) {
         this.cube = cube
         this.orientation = window.orientation || 0
         this._handleDeviceOrientationInit = this._handleDeviceOrientationInit.bind(this)
         this._handleDeviceOrientation = this._handleDeviceOrientation.bind(this)
-        this.initOrientationCompensate = true;
+        this.initOrientationCompensate = initOrientationCompensate;
         this.initOrientation = 0;
     }
 

@@ -86,7 +86,7 @@ class VZCubeElement extends HTMLElement {
         this._processAnimation  = this._processAnimation.bind(this)
         this._refresh           = this._refresh.bind(this)
 
-        this.deviceOrientationManager = new DeviceOrientationManager(this)
+        this.deviceOrientationManager = new DeviceOrientationManager(this, true)
     }
 
     connectedCallback() {
