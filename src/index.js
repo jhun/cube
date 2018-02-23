@@ -154,9 +154,11 @@ class VZCubeElement extends HTMLElement {
     }
 
     zoomIn() {
+        this.style.transition = '500ms perspective ease-in-out',
         this.setAttribute('zoom', true)
     }
     zoomOut() {
+        this.style.transition = '500ms perspective ease-in-out',
         this.removeAttribute('zoom')
     }
 
